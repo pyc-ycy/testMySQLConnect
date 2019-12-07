@@ -12,14 +12,21 @@ void test()
     {
         cout << "成功连接MySQL数据库" << endl;
         mysql_query(pConn, "set names gbk");
-       
+        // 增加数据
+        //mysql_query(pConn, "insert into tb_product(name,price,num,unit) values('萝卜',63.4,80,'袋');");
+        //修改数据
+        //mysql_query(pConn, "update tb_product set num=100 where name='猕猴桃';");
+        //删除数据
+        //mysql_query(pConn, "delete from tb_product where unit='袋'");
+        //查询数据
         if (!mysql_query(pConn, "select * from tb_product;"))
         {
             MYSQL_RES* result = mysql_store_result(pConn);
             MYSQL_ROW row;
+            cout << "ID\tName\tprice\tnum\tunit" << endl;
             while (row = mysql_fetch_row(result))
             {
-                cout << row[0] << " " << row[1] << endl;
+                cout << row[0] << '\t' << row[1] << '\t' << row[2] << '\t' << row[3] << '\t' << row[4] << endl;;
             }
             mysql_free_result(result);
         }
